@@ -1,5 +1,5 @@
 ---
-title: "سلام دنیا"
+title:
 draft: false
 tags:
   - درباره من
