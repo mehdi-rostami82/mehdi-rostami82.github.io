@@ -1,5 +1,5 @@
 ---
-title:
+title: سلام
 draft: false
 tags:
   - درباره من
