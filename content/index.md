@@ -2,8 +2,6 @@
 title: سلام
 draft: false
 tags:
-  - درباره من
-  - معرفی
 ---
 
 <center><b>اول دفتر به نام ایزد دانا...</b></center>
