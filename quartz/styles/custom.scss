@@ -585,3 +585,462 @@ blockquote {
   }
 
 }
+/* =========================================
+   HOME PAGE — RESPONSIVE DESIGN
+   ========================================= */
+
+.home-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  align-items: center;
+  gap: 4rem;
+  min-height: 520px;
+  padding: 4rem 0;
+  overflow: hidden;
+}
+
+/* ---------- Hero Text ---------- */
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.home-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 999px;
+  color: var(--secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.home-hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.home-hero h1 span {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--secondary);
+}
+
+.home-hero p {
+  max-width: 650px;
+  margin: 1.6rem 0 0;
+  color: var(--darkgray);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 2;
+}
+
+/* ---------- Buttons ---------- */
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.4rem;
+  border-radius: 12px;
+  text-decoration: none !important;
+  font-weight: 700;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.home-btn:hover {
+  transform: translateY(-3px);
+}
+
+.home-btn-primary {
+  background: var(--secondary);
+  color: white !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.home-btn-secondary {
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark) !important;
+}
+
+/* ---------- Hero Visual ---------- */
+
+.home-hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.home-visual-card {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  width: min(280px, 70%);
+  min-height: 210px;
+  padding: 2rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 28px;
+  background: var(--light);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  transform: rotate(-4deg);
+  transition: transform 0.3s ease;
+}
+
+.home-visual-card:hover {
+  transform: rotate(0deg) translateY(-8px);
+}
+
+.home-visual-card span {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--secondary);
+  font-size: 2.5rem;
+}
+
+.home-visual-card strong {
+  font-size: 1.5rem;
+}
+
+.home-visual-card small {
+  margin-top: 0.5rem;
+  color: var(--darkgray);
+}
+
+/* ---------- Decorative Orbits ---------- */
+
+.home-orbit {
+  position: absolute;
+  border: 1px solid var(--lightgray);
+  border-radius: 50%;
+  opacity: 0.65;
+  animation: homeFloat 7s ease-in-out infinite;
+}
+
+.orbit-one {
+  width: 360px;
+  height: 360px;
+}
+
+.orbit-two {
+  width: 270px;
+  height: 270px;
+  animation-delay: -2s;
+}
+
+.orbit-three {
+  width: 450px;
+  height: 450px;
+  animation-delay: -4s;
+}
+
+@keyframes homeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* ---------- Sections ---------- */
+
+.home-section {
+  margin-top: 3rem;
+  padding: 3rem 0;
+}
+
+.home-section-heading {
+  margin-bottom: 1.5rem;
+}
+
+.home-section-heading span,
+.home-mini-label {
+  color: var(--secondary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.home-section-heading h2,
+.home-about h2 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+/* ---------- Cards ---------- */
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.home-card {
+  display: flex;
+  min-height: 250px;
+  padding: 1.5rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 20px;
+  background: var(--light);
+  text-decoration: none !important;
+  flex-direction: column;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--secondary);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
+}
+
+.home-card-icon {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.3rem;
+  border-radius: 14px;
+  background: var(--highlight);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.home-card h3 {
+  margin: 0;
+  color: var(--dark);
+  font-size: 1.15rem;
+}
+
+.home-card p {
+  margin: 0.8rem 0;
+  color: var(--darkgray);
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+
+.home-card-link {
+  margin-top: auto;
+  color: var(--secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---------- Quote ---------- */
+
+.home-quote {
+  position: relative;
+  margin: 3rem 0;
+  padding: 3rem;
+  border-radius: 24px;
+  background: var(--highlight);
+  text-align: center;
+}
+
+.home-quote-mark {
+  margin-bottom: -1rem;
+  color: var(--secondary);
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.home-quote p {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+}
+
+/* ---------- About ---------- */
+
+.home-about {
+  margin: 3rem 0;
+  padding: 3rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 24px;
+}
+
+.home-about p {
+  max-width: 750px;
+  color: var(--darkgray);
+  line-height: 2;
+}
+
+.home-text-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--secondary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media all and (max-width: 1100px) {
+
+  .home-hero {
+    grid-template-columns: 1fr 0.75fr;
+    gap: 2rem;
+  }
+
+  .home-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================================
+   MOBILE / ANDROID
+   ========================================= */
+
+@media all and (max-width: 700px) {
+
+  .home-hero {
+    display: flex;
+    min-height: auto;
+    padding: 2rem 0 3rem;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .home-hero-content {
+    width: 100%;
+  }
+
+  .home-eyebrow {
+    font-size: 0.78rem;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2rem, 9vw, 3rem);
+    line-height: 1.3;
+  }
+
+  .home-hero p {
+    font-size: 0.95rem;
+    line-height: 2;
+  }
+
+  .home-actions {
+    flex-direction: column;
+  }
+
+  .home-btn {
+    width: 100%;
+  }
+
+  .home-hero-visual {
+    width: 100%;
+    min-height: 280px;
+  }
+
+  .home-visual-card {
+    width: 220px;
+    min-height: 180px;
+    padding: 1.5rem;
+  }
+
+  .orbit-one {
+    width: 250px;
+    height: 250px;
+  }
+
+  .orbit-two {
+    width: 190px;
+    height: 190px;
+  }
+
+  .orbit-three {
+    width: 310px;
+    height: 310px;
+  }
+
+  .home-section {
+    margin-top: 1rem;
+    padding: 2rem 0;
+  }
+
+  .home-cards {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .home-card {
+    min-height: auto;
+    padding: 1.3rem;
+  }
+
+  .home-card p {
+    margin-bottom: 1rem;
+  }
+
+  .home-quote {
+    margin: 2rem 0;
+    padding: 2rem 1.3rem;
+  }
+
+  .home-about {
+    margin: 2rem 0;
+    padding: 2rem 1.3rem;
+  }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media all and (max-width: 400px) {
+
+  .home-hero {
+    padding-top: 1rem;
+  }
+
+  .home-hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .home-hero p {
+    font-size: 0.9rem;
+  }
+
+  .home-visual-card {
+    width: 200px;
+  }
+
+}
