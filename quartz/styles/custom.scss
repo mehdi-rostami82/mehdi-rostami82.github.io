@@ -175,3 +175,413 @@ blockquote {
     }
   }
 }
+/* =========================================================
+   MEHDI ROSTAMI — HOME PAGE
+   ========================================================= */
+
+.page[data-slug="index"] article {
+  max-width: 1100px;
+}
+
+/* ---------- HERO ---------- */
+
+.home-hero {
+  position: relative;
+  min-height: 470px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  margin: 1rem 0 5rem;
+  padding: 4rem;
+  overflow: hidden;
+  border: 1px solid var(--lightgray);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      color-mix(in srgb, var(--secondary) 18%, transparent),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--light) 94%, var(--secondary)),
+      var(--light)
+    );
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  left: -160px;
+  bottom: -180px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--secondary) 25%, transparent);
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.home-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.3rem;
+  color: var(--secondary);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.home-eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--secondary);
+  box-shadow: 0 0 0 5px
+    color-mix(in srgb, var(--secondary) 12%, transparent);
+}
+
+.home-hero h1 {
+  margin: 0;
+  font-size: clamp(2.3rem, 5vw, 4.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+}
+
+.home-hero h1 strong {
+  color: var(--secondary);
+}
+
+.home-hero p {
+  max-width: 650px;
+  margin: 1.8rem 0 0;
+  color: var(--darkgray);
+  font-size: 1.08rem;
+  line-height: 2;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.home-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 12px;
+  color: var(--darkgray);
+  background: var(--light);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.home-actions a:first-child {
+  color: var(--light);
+  border-color: var(--secondary);
+  background: var(--secondary);
+}
+
+.home-actions a:hover {
+  transform: translateY(-3px);
+  border-color: var(--secondary);
+}
+
+/* ---------- HERO DECORATION ---------- */
+
+.home-hero-decoration {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid
+    color-mix(in srgb, var(--secondary) 30%, var(--lightgray));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--secondary) 8%, var(--light));
+  box-shadow:
+    0 0 0 25px color-mix(in srgb, var(--secondary) 4%, transparent),
+    0 0 0 50px color-mix(in srgb, var(--secondary) 2%, transparent);
+}
+
+.home-hero-decoration::before,
+.home-hero-decoration::after {
+  content: "";
+  position: absolute;
+  border: 1px solid
+    color-mix(in srgb, var(--secondary) 15%, transparent);
+  border-radius: 50%;
+}
+
+.home-hero-decoration::before {
+  inset: -35px;
+}
+
+.home-hero-decoration::after {
+  inset: -70px;
+}
+
+.home-hero-decoration span {
+  color: var(--secondary);
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+}
+
+/* ---------- SECTIONS ---------- */
+
+.home-section {
+  margin: 0 0 5rem;
+}
+
+.home-section-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+
+.home-section-heading span {
+  color: var(--secondary);
+  font-family: var(--codeFont);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.home-section-heading h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* ---------- CARDS ---------- */
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.home-card {
+  min-height: 190px;
+  padding: 1.5rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 18px;
+  background: var(--light);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--secondary) 55%, var(--lightgray));
+  box-shadow: 0 15px 35px
+    color-mix(in srgb, var(--dark) 8%, transparent);
+}
+
+.home-card-icon {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  color: var(--secondary);
+  background: color-mix(in srgb, var(--secondary) 10%, var(--light));
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.home-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.home-card p {
+  margin: 0;
+  color: var(--darkgray);
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+
+/* ---------- QUOTE ---------- */
+
+.home-quote {
+  position: relative;
+  margin: 0 0 5rem;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.home-quote span {
+  display: block;
+  height: 35px;
+  color: var(--secondary);
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.home-quote p {
+  margin: 0;
+  color: var(--darkgray);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* ---------- ABOUT ---------- */
+
+.home-about {
+  max-width: 800px;
+}
+
+.home-about > p {
+  color: var(--darkgray);
+  font-size: 1.05rem;
+  line-height: 2.2;
+}
+
+.home-text-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--secondary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-text-link:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media all and ($mobile) {
+
+  .page[data-slug="index"] article {
+    width: 100%;
+  }
+
+  .home-hero {
+    min-height: auto;
+    margin: 0 0 3rem;
+    padding: 2rem 1.3rem 2.5rem;
+    border-radius: 22px;
+    text-align: right;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .home-hero h1 {
+    font-size: 2.25rem;
+    line-height: 1.4;
+  }
+
+  .home-hero p {
+    font-size: 0.95rem;
+    line-height: 2;
+  }
+
+  .home-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .home-actions a {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .home-hero-decoration {
+    width: 105px;
+    height: 105px;
+    align-self: center;
+    margin-top: 2rem;
+  }
+
+  .home-hero-decoration span {
+    font-size: 1.7rem;
+  }
+
+  .home-hero-decoration::before {
+    inset: -18px;
+  }
+
+  .home-hero-decoration::after {
+    inset: -35px;
+  }
+
+  .home-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .home-section-heading h2 {
+    font-size: 1.4rem;
+  }
+
+  .home-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+  }
+
+  .home-card {
+    min-height: 170px;
+    padding: 1.1rem;
+    border-radius: 15px;
+  }
+
+  .home-card h3 {
+    font-size: 1rem;
+  }
+
+  .home-card p {
+    font-size: 0.82rem;
+    line-height: 1.8;
+  }
+
+  .home-quote {
+    margin-bottom: 3rem;
+    padding: 2rem 1rem;
+  }
+
+  .home-quote p {
+    font-size: 1rem;
+  }
+
+}
+
+/* ---------- SMALL PHONES ---------- */
+
+@media all and (max-width: 480px) {
+
+  .home-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .home-card {
+    min-height: auto;
+  }
+
+  .home-hero h1 {
+    font-size: 2rem;
+  }
+
+}
