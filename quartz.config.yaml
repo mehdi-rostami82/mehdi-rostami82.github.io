@@ -1,65 +1,77 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
+# ═══════════════════════════════════════════════════════════════
+#  ✦ Quartz Configuration — وبلاگ مهدی رستمی
+#  ✦ Author : Mehdi Rostami
+#  ✦ Locale : fa-IR  ·  RTL  ·  Light + Dark
+#  ✦ Style  : Minimal · Editorial · Persian-friendly
+# ═══════════════════════════════════════════════════════════════
+
 configuration:
+  # ── 🪪 هویت سایت ────────────────────────────────────────────
   pageTitle: وبلاگ مهدی رستمی
-  pageTitleSuffix: ""
+  pageTitleSuffix: " | یادداشت‌ها و نوشته‌ها"
+  baseUrl: mehdi-rostami82.github.io
+  locale: fa-IR
+
+  # ── ⚙️ رفتار ────────────────────────────────────────────────
   enableSPA: true
   enablePopovers: true
+
+  # ── 📊 آنالیتیکس ────────────────────────────────────────────
   analytics:
     provider: plausible
-  locale: fa-IR
-  baseUrl: mehdi-rostami82.github.io
+
+  # ── 🚫 فیلتر محتوا ──────────────────────────────────────────
   ignorePatterns:
     - private
     - templates
     - .obsidian
+
+  # ── 🎨 تم و تایپوگرافی ──────────────────────────────────────
   theme:
     fontOrigin: googleFonts
     cdnCaching: true
+
     typography:
       header: Vazirmatn
-      body: Vazirmatn
-      code: IBM Plex Mono
+      body:   Vazirmatn
+      code:   "IBM Plex Mono"
+
     colors:
+      # ── ☀️ حالت روشن — کاغذی، گرم و خوانا ──────────────────
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light:         "#fdfcfb"   # پس‌زمینه اصلی (کاغذ گرم)
+        lightgray:     "#f0ede9"   # جداکننده‌ها، کارت‌ها
+        gray:          "#a8a29e"   # متن کم‌رنگ، placeholder
+        darkgray:      "#57534e"   # متن ثانویه
+        dark:          "#1c1917"   # متن اصلی (مشکی گرم)
+        secondary:     "#0f766e"   # لینک / تأکید (teal عمیق)
+        tertiary:      "#c2410c"   # لهجه دوم (نارنجی سوخته)
+        highlight:     "rgba(15, 118, 110, 0.10)"
+        textHighlight: "#fde68a88" # زرد ملایم برای highlight
+
+      # ── 🌙 حالت تاریک — شب‌رنگ، آرام و بدون خستگی چشم ─────
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light:         "#0f1115"   # پس‌زمینه اصلی (شب عمیق)
+        lightgray:     "#1c1f26"   # کارت‌ها
+        gray:          "#6b7280"   # متن کم‌رنگ
+        darkgray:      "#d1d5db"   # متن ثانویه
+        dark:          "#f5f5f4"   # متن اصلی
+        secondary:     "#5eead4"   # لینک / تأکید (teal روشن)
+        tertiary:      "#fdba74"   # لهجه دوم (نارنجی گرم)
+        highlight:     "rgba(94, 234, 212, 0.10)"
+        textHighlight: "#fbbf2488"
+
+# ═══════════════════════════════════════════════════════════════
+#  🔌 پلاگین‌ها — دسته‌بندی‌شده بر اساس هدف
+#     order → ترتیب pipeline   |   layout → جایگاه در UI
+# ═══════════════════════════════════════════════════════════════
 plugins:
-  - source: "@quartz-community/created-modified-date"
-    enabled: true
-    options:
-      defaultDateType: modified
-      priority:
-        - frontmatter
-        - git
-        - filesystem
-    order: 10
-  - source: "@quartz-community/syntax-highlighting"
-    enabled: true
-    options:
-      theme:
-        light: github-light
-        dark: github-dark
-      keepBackground: false
-    order: 20
+
+  # ── 1️⃣  پردازش Markdown ─────────────────────────────────────
   - source: "@quartz-community/obsidian-flavored-markdown"
     enabled: true
+    order: 10
     options:
       comments: true
       highlight: true
@@ -74,234 +86,278 @@ plugins:
       enableVideoEmbed: true
       enableCheckbox: false
       enableObsidianUri: true
-    order: 30
-  - source: ./plugins/bidi-text
-    enabled: true
-    order: 35
+
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
-    order: 40
-  - source: "@quartz-community/table-of-contents"
+    order: 20
+
+  - source: "@quartz-community/syntax-highlighting"
     enabled: true
-    order: 50
-    layout:
-      position: right
-      priority: 30
-      display: desktop-only
-  - source: "@quartz-community/crawl-links"
-    enabled: true
+    order: 30
     options:
-      markdownLinkResolution: shortest
-    order: 60
-  - source: "@quartz-community/description"
-    enabled: true
-    order: 70
+      theme:
+        light: github-light
+        dark:  github-dark
+      keepBackground: false
+
   - source: "@quartz-community/latex"
     enabled: true
+    order: 40
     options:
       renderEngine: katex
+
+  - source: "@quartz-community/hard-line-breaks"
+    enabled: false
+    order: 50
+
+  # ── 2️⃣  پلاگین‌های سفارشی ──────────────────────────────────
+  - source: ./plugins/bidi-text
+    enabled: true
+    order: 60
+
+  # ── 3️⃣  متادیتا و ایندکس ────────────────────────────────────
+  - source: "@quartz-community/created-modified-date"
+    enabled: true
+    order: 70
+    options:
+      defaultDateType: modified
+      priority: [frontmatter, git, filesystem]
+
+  - source: "@quartz-community/description"
+    enabled: true
     order: 80
+
+  - source: "@quartz-community/crawl-links"
+    enabled: true
+    order: 90
+    options:
+      markdownLinkResolution: shortest
+
+  - source: "@quartz-community/content-index"
+    enabled: true
+    order: 100
+    options:
+      enableSiteMap: true
+      enableRSS: true
+
+  # ── 4️⃣  اختیاری (غیرفعال — آماده فعال‌سازی) ────────────────
   - source: "@quartz-community/citations"
     enabled: false
+    order: 110
     options:
       bibliographyFile: ./bibliography.bib
       suppressBibliography: false
       linkCitations: false
       csl: apa
-    order: 85
-  - source: "@quartz-community/hard-line-breaks"
-    enabled: false
-    order: 90
+
   - source: "@quartz-community/ox-hugo"
     enabled: false
-    order: 91
+    order: 120
+
   - source: "@quartz-community/roam"
     enabled: false
-    order: 92
-  - source: "@quartz-community/quartz-fonts"
-    enabled: true
-    options:
-      useThemeFonts: false
-      fontOrigin: googleFonts
-      body: Vazirmatn
-      header: Vazirmatn
-      interface: Vazirmatn
-      code: IBM Plex Mono
-  - source: "@quartz-themes/core"
-    enabled: true
-    options:
-      theme: things
-      mode: both
-  - source: "@quartz-community/remove-draft"
-    enabled: true
-  - source: "@quartz-community/explicit-publish"
-    enabled: false
-  - source: "@quartz-community/alias-redirects"
-    enabled: true
-  - source: "@quartz-community/content-index"
-    enabled: true
-    options:
-      enableSiteMap: true
-      enableRSS: true
-  - source: "@quartz-community/favicon"
-    enabled: true
-  - source: "@quartz-community/og-image"
-    enabled: true
-  - source: "@quartz-community/cname"
-    enabled: true
-  - source: "@quartz-community/canvas-page"
-    enabled: true
-  - source: "@quartz-community/content-page"
-    enabled: true
-  - source: "@quartz-community/folder-page"
-    enabled: true
-  - source: "@quartz-community/tag-page"
-    enabled: true
-  - source: "@quartz-community/explorer"
-    enabled: true
-    layout:
-      position: left
-      priority: 50
-  - source: "@quartz-community/graph"
-    enabled: true
-    layout:
-      position: right
-      priority: 10
-  - source: "@quartz-community/search"
-    enabled: true
-    layout:
-      position: left
-      priority: 20
-      group: toolbar
-      groupOptions:
-        grow: true
-  - source: "@quartz-community/backlinks"
-    enabled: true
-    layout:
-      position: right
-      priority: 50
-  - source: "@quartz-community/article-title"
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 10
-  - source: "@quartz-community/content-meta"
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 20
-  - source: "@quartz-community/tag-list"
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 30
-  - source: "@quartz-community/page-title"
-    enabled: true
-    layout:
-      position: left
-      priority: 10
-  - source: "@quartz-community/darkmode"
-    enabled: true
-    layout:
-      position: left
-      priority: 30
-      group: toolbar
-  - source: "@quartz-community/reader-mode"
-    enabled: true
-    layout:
-      position: left
-      priority: 35
-      group: toolbar
-  - source: "@quartz-community/breadcrumbs"
-    enabled: true
-    layout:
-      position: beforeBody
-      priority: 5
-      condition: not-index
+    order: 130
+
   - source: "@quartz-community/comments"
     enabled: false
+    order: 140
     options:
       provider: giscus
       options: {}
     layout:
       position: afterBody
       priority: 10
-  - source: "@quartz-community/footer"
-    enabled: true
-    options:
-      links:
-        GitHub: https://github.com/eledah/quartz
+
   - source: "@quartz-community/recent-notes"
     enabled: false
-  - source: "@quartz-community/spacer"
-    enabled: true
-    options: {}
-    order: 25
+    order: 150
+
+  - source: "@quartz-community/stacked-pages"
+    enabled: false
+    order: 160
     layout:
-      position: left
-      priority: 25
-      display: mobile-only
-  - source: "@quartz-community/bases-page"
+      position: afterBody
+      priority: 50
+      display: all
+
+  # ── 5️⃣  انتشار و امنیت ─────────────────────────────────────
+  - source: "@quartz-community/remove-draft"
     enabled: true
-    options: {}
-    order: 50
-  - source: "@quartz-community/note-properties"
+    order: 200
+
+  - source: "@quartz-community/explicit-publish"
+    enabled: false
+    order: 210
+
+  - source: "@quartz-community/alias-redirects"
     enabled: true
-    options:
-      includeAll: false
-      includedProperties:
-        - description
-        - tags
-        - aliases
-      excludedProperties: []
-      hidePropertiesView: true
-      delimiters: ---
-      language: yaml
-    order: 5
+    order: 220
+
   - source: "@quartz-community/unlisted-pages"
     enabled: true
-    options: {}
-    order: 45
+    order: 230
+
   - source: "@quartz-community/encrypted-pages"
     enabled: true
+    order: 240
     options:
       iterations: 600000
       passwordField: password
       unlistWhenEncrypted: false
       outputPath: static/encryptedContentIndex.json
-    order: 900
     layout:
       position: body
       priority: 100
       display: all
-  - source: "@quartz-community/stacked-pages"
-    enabled: false
+
+  # ── 6️⃣  انواع صفحه ─────────────────────────────────────────
+  - source: "@quartz-community/canvas-page"
+    enabled: true
+    order: 300
+  - source: "@quartz-community/content-page"
+    enabled: true
+    order: 310
+  - source: "@quartz-community/folder-page"
+    enabled: true
+    order: 320
+  - source: "@quartz-community/tag-page"
+    enabled: true
+    order: 330
+  - source: "@quartz-community/bases-page"
+    enabled: true
+    order: 340
+    options: {}
+
+  # ── 7️⃣  دارایی‌ها و برندینگ ─────────────────────────────────
+  - source: "@quartz-community/favicon"
+    enabled: true
+    order: 400
+  - source: "@quartz-community/og-image"
+    enabled: true
+    order: 410
+  - source: "@quartz-community/cname"
+    enabled: true
+    order: 420
+
+  # ── 8️⃣  فونت‌ها ─────────────────────────────────────────────
+  - source: "@quartz-community/quartz-fonts"
+    enabled: true
+    order: 500
+    options:
+      useThemeFonts: false
+      fontOrigin: googleFonts
+      body: Vazirmatn
+      header: Vazirmatn
+      interface: Vazirmatn
+      code: "IBM Plex Mono"
+
+  # ── 9️⃣  تم بصری ────────────────────────────────────────────
+  - source: "@quartz-themes/core"
+    enabled: true
+    order: 510
+    options:
+      theme: things
+      mode: both
+
+  # ── 🔟 اجزای رابط کاربری ───────────────────────────────────
+  - source: "@quartz-community/page-title"
+    enabled: true
+    layout: { position: left, priority: 10 }
+
+  - source: "@quartz-community/search"
+    enabled: true
     layout:
-      position: afterBody
-      priority: 50
-      display: all
+      position: left
+      priority: 20
+      group: toolbar
+      groupOptions: { grow: true }
+
+  - source: "@quartz-community/darkmode"
+    enabled: true
+    layout: { position: left, priority: 30, group: toolbar }
+
+  - source: "@quartz-community/reader-mode"
+    enabled: true
+    layout: { position: left, priority: 35, group: toolbar }
+
+  - source: "@quartz-community/explorer"
+    enabled: true
+    layout: { position: left, priority: 50 }
+
+  - source: "@quartz-community/spacer"
+    enabled: true
+    layout: { position: left, priority: 25, display: mobile-only }
+
+  - source: "@quartz-community/graph"
+    enabled: true
+    layout: { position: right, priority: 10 }
+
+  - source: "@quartz-community/table-of-contents"
+    enabled: true
+    layout: { position: right, priority: 30, display: desktop-only }
+
+  - source: "@quartz-community/backlinks"
+    enabled: true
+    layout: { position: right, priority: 50 }
+
+  - source: "@quartz-community/breadcrumbs"
+    enabled: true
+    layout: { position: beforeBody, priority: 5, condition: not-index }
+
+  - source: "@quartz-community/article-title"
+    enabled: true
+    layout: { position: beforeBody, priority: 10 }
+
+  - source: "@quartz-community/content-meta"
+    enabled: true
+    layout: { position: beforeBody, priority: 20 }
+
+  - source: "@quartz-community/tag-list"
+    enabled: true
+    layout: { position: beforeBody, priority: 30 }
+
+  - source: "@quartz-community/footer"
+    enabled: true
+    options:
+      links:
+        GitHub: https://github.com/eledah/quartz
+        RSS: /index.xml
+
+  # ── 1️⃣1️⃣  ویژگی‌های یادداشت ────────────────────────────────
+  - source: "@quartz-community/note-properties"
+    enabled: true
+    order: 600
+    options:
+      includeAll: false
+      includedProperties: [description, tags, aliases]
+      excludedProperties: []
+      hidePropertiesView: true
+      delimiters: ---
+      language: yaml
+
+# ═══════════════════════════════════════════════════════════════
+#  🧩 چیدمان — گروه‌ها و بازنویسی بر اساس نوع صفحه
+# ═══════════════════════════════════════════════════════════════
 layout:
   groups:
     toolbar:
       priority: 35
       direction: row
       gap: 0.5rem
+
   byPageType:
     "404":
-      positions:
-        beforeBody: []
-        left: []
-        right: []
+      positions: { beforeBody: [], left: [], right: [] }
+
     content: {}
+
     folder:
-      exclude:
-        - reader-mode
-      positions:
-        right: []
+      exclude: [reader-mode]
+      positions: { right: [] }
+
     tag:
-      exclude:
-        - reader-mode
-      positions:
-        right: []
+      exclude: [reader-mode]
+      positions: { right: [] }
+
     canvas: {}
     bases: {}
