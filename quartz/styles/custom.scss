@@ -1,17 +1,66 @@
+// ═══════════════════════════════════════════════════════════════
+//  ✦ Quartz Custom Styles — Mehdi Rostami's Blog
+//  ✦ Structure: Tokens → Base → RTL → Components → Home → Responsive
+//  ✦ Philosophy: Minimal · Editorial · Persian-friendly · Accessible
+// ═══════════════════════════════════════════════════════════════
+
 @use "./variables.scss" as *;
 
-$vazirmatn: Vazirmatn, sans-serif;
+// ─────────────────────────────────────────────────────────────
+//  🎨 1. DESIGN TOKENS — single source of truth
+// ─────────────────────────────────────────────────────────────
+
+$vazirmatn: Vazirmatn, "Segoe UI", Tahoma, sans-serif;
+
+// Radii
+$radius-sm:  8px;
+$radius-md:  12px;
+$radius-lg:  20px;
+$radius-xl:  28px;
+$radius-pill: 999px;
+
+// Shadows
+$shadow-sm:  0 4px 12px rgba(0, 0, 0, 0.06);
+$shadow-md:  0 10px 25px rgba(0, 0, 0, 0.10);
+$shadow-lg:  0 18px 45px rgba(0, 0, 0, 0.12);
+$shadow-xl:  0 25px 70px rgba(0, 0, 0, 0.15);
+
+// Motion
+$ease:        cubic-bezier(0.4, 0, 0.2, 1);
+$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+$dur-fast:    0.15s;
+$dur-base:    0.25s;
+$dur-slow:    0.35s;
+
+// Spacing scale
+$space-1: 0.5rem;
+$space-2: 0.75rem;
+$space-3: 1rem;
+$space-4: 1.5rem;
+$space-5: 2rem;
+$space-6: 3rem;
+$space-7: 4rem;
+
+// Breakpoints (align with Quartz's $mobile if defined)
+$bp-tablet: 1100px;
+$bp-mobile: 700px;
+$bp-small:  400px;
+
+
+// ─────────────────────────────────────────────────────────────
+//  🔤 2. FONT OVERRIDES — Persian-first typography
+// ─────────────────────────────────────────────────────────────
 
 :root {
-  // Things theme reads these overrides after quartz-fonts loads.
-  --font-text-override: #{$vazirmatn};
+  --font-text-override:      #{$vazirmatn};
   --font-interface-override: #{$vazirmatn};
-  --font-text-theme: #{$vazirmatn};
-  --font-interface-theme: #{$vazirmatn};
+  --font-text-theme:         #{$vazirmatn};
+  --font-interface-theme:    #{$vazirmatn};
 }
 
+// Apply Vazirmatn everywhere, but let the theme's font stack win if defined
 html {
-  font-family: $vazirmatn !important;
+  font-family: $vazirmatn;
 }
 
 body,
@@ -29,168 +78,180 @@ body,
 .explorer .folder-button,
 .explorer .tree-item-self,
 .explorer-content {
-  font-family: var(--bodyFont, $vazirmatn) !important;
+  font-family: var(--bodyFont, #{$vazirmatn});
 }
 
+
+// ─────────────────────────────────────────────────────────────
+//  🧭 3. RTL FIXES — breadcrumbs, explorer, TOC, meta
+// ─────────────────────────────────────────────────────────────
+
+// Breadcrumbs — RTL-correct spacing
 .breadcrumb-element p {
-  margin: 0 0.5rem 0 0;
+  margin: 0 $space-1 0 0;
   padding: 0;
   line-height: normal;
 }
 
+// Explorer toggle chevron
 button#explorer .fold {
+  margin-inline: 0 $space-1;
   opacity: 0.8;
-  margin-left: 0 !important;
-  margin-right: 0.5rem !important;
-  transition: transform 0.3s;
+  transition: transform $dur-base $ease;
 }
 
-.content-meta[show-comma="true"] > span:not(:last-child) {
-  margin-left: 8px !important;
-  margin-right: 0px !important;
-}
-
-.tags {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-}
-
-.folder-icon {
-  margin-right: 0px !important;
-  margin-left: 5px !important;
-}
-
-#explorer-content ul {
-  padding-right: 0.7rem !important;
-  padding-left: 0px !important;
-}
-
-#toc-content .depth-1 {
-  padding: 0px !important;
-  padding-right: 1rem !important;
-}
-
-#toc-content .depth-2 {
-  padding: 0px !important;
-  padding-right: 2rem !important;
-}
-
-#toc-content .depth-3 {
-  padding: 0px !important;
-  padding-right: 3rem !important;
-}
-
+// Folder expand/collapse chevron — RTL rotation
 li:has(> .folder-outer:not(.open)) > .folder-container > svg {
-  transform: rotate(90deg) !important;
+  transform: rotate(90deg);
 }
 
+// Explorer folder icon
+.folder-icon {
+  margin-inline: $space-1 0;
+}
+
+// Explorer list indentation
+#explorer-content ul {
+  padding-inline: $space-2 0;
+}
+
+// Content meta separators
+.content-meta[show-comma="true"] > span:not(:last-child) {
+  margin-inline: $space-1 0;
+}
+
+// Tags container
+.tags {
+  padding-inline: 0;
+}
+
+// Table of Contents — RTL indentation by depth
+@for $i from 1 through 3 {
+  #toc-content .depth-#{$i} {
+    padding-inline: $i * 1rem 0;
+    padding-block: 0;
+  }
+}
+
+// Mobile search padding
 div.search.mobile-only {
-  padding-right: 10px !important;
+  padding-inline-end: 10px;
 }
 
+// Code blocks always LTR
 code {
-  direction: ltr !important;
+  direction: ltr;
+  unicode-bidi: embed;
 }
 
+// Footnote label — Persian translation
 h2#footnote-label {
   visibility: hidden;
+
+  &::after {
+    content: "پانوشت‌ها";
+    visibility: visible;
+    display: block;
+  }
 }
 
-h2#footnote-label::after {
-  content: "پانوشت‌ها";
-  visibility: visible;
-  display: block;
-}
-
+// Blockquote — RTL border on right
 blockquote {
-  border-right: 3px solid var(--secondary);
-  border-left: none;
-  margin: 1rem 0;
-  padding-right: 1rem;
-  padding-left: none;
-  transition: border-color 0.2s;
+  margin: $space-3 0;
+  padding-inline: $space-3 0;
+  border-inline-start: 3px solid var(--secondary);
+  border-inline-end: none;
+  transition: border-color $dur-base $ease;
 }
 
-// Quartz Themes expect --callout-title-color; bridge from per-callout accent color.
+
+// ─────────────────────────────────────────────────────────────
+//  💬 4. CALLOUTS — bridge title color & content inheritance
+// ─────────────────────────────────────────────────────────────
+
 .callout {
   --callout-title-color: var(--callout-color);
 
   .callout-title-inner,
   .callout-title-inner > p {
-    color: var(--callout-title-color, var(--callout-color, var(--text-normal, var(--darkgray))));
+    color: var(--callout-title-color,
+            var(--callout-color,
+            var(--text-normal, var(--darkgray))));
   }
 
   > .callout-content {
     color: var(--text-normal, var(--darkgray));
 
-    p,
-    li,
-    ul,
-    ol,
-    a,
-    span {
+    p, li, ul, ol, a, span {
       color: inherit;
     }
   }
 }
 
+
+// ─────────────────────────────────────────────────────────────
+//  ☑️ 5. TASK LISTS — RTL checkbox alignment
+// ─────────────────────────────────────────────────────────────
+
 .page article {
   li.task-list-item,
   li:has(> input[type="checkbox"]) {
     list-style: none;
-    padding-inline-start: calc(var(--checkbox-size, 16px) + 0.75rem);
-    padding-inline-end: 0;
+    padding-inline: calc(var(--checkbox-size, 16px) + $space-2) 0;
   }
 
   input[type="checkbox"] {
-    margin-inline-start: calc(-1 * var(--checkbox-size, 16px) - 0.5rem) !important;
-    margin-inline-end: 0.5rem !important;
-    margin-left: unset !important;
-    margin-right: unset !important;
+    margin-inline: calc(-1 * var(--checkbox-size, 16px) - $space-1) $space-1;
     vertical-align: middle;
   }
 }
 
-// Explorer RTL overrides (mobile)
+
+// ─────────────────────────────────────────────────────────────
+//  📱 6. EXPLORER RTL (MOBILE) — slide from right
+// ─────────────────────────────────────────────────────────────
+
 @media all and ($mobile) {
-  html[dir="rtl"] .page > #quartz-body.lock-scroll > :not(.sidebar.left:has(.explorer)) {
-    transform: translateX(-100dvw);
-  }
-
-  html[dir="rtl"] .explorer {
-    &.collapsed > .explorer-content {
-      transform: translateX(100vw);
-      visibility: hidden;
+  html[dir="rtl"] {
+    .page > #quartz-body.lock-scroll > :not(.sidebar.left:has(.explorer)) {
+      transform: translateX(-100dvw);
     }
 
-    &:not(.collapsed) > .explorer-content {
-      transform: translateX(0);
-      visibility: visible;
-    }
+    .explorer {
+      &.collapsed > .explorer-content {
+        transform: translateX(100vw);
+        visibility: hidden;
+      }
 
-    .explorer-content {
-      left: auto;
-      right: 0;
-      transform: translateX(100vw);
+      &:not(.collapsed) > .explorer-content {
+        transform: translateX(0);
+        visibility: visible;
+      }
+
+      .explorer-content {
+        inset-inline: auto 0;   // right: 0
+        transform: translateX(100vw);
+      }
     }
   }
 }
-/* =========================================
-   HOME PAGE — RESPONSIVE DESIGN
-   ========================================= */
 
+
+// ═══════════════════════════════════════════════════════════════
+//  🏠 7. HOME PAGE — Hero, Sections, Cards, Quote, About
+// ═══════════════════════════════════════════════════════════════
+
+// ── 7.1 Hero ─────────────────────────────────────────────────
 .home-hero {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
   align-items: center;
-  gap: 4rem;
+  gap: $space-7;
   min-height: 520px;
-  padding: 4rem 0;
+  padding: $space-7 0;
   overflow: hidden;
 }
-
-/* ---------- Hero Text ---------- */
 
 .home-hero-content {
   position: relative;
@@ -201,13 +262,15 @@ blockquote {
 .home-eyebrow {
   display: inline-flex;
   align-items: center;
-  margin-bottom: 1.4rem;
+  margin-bottom: $space-4;
   padding: 0.45rem 0.9rem;
   border: 1px solid var(--lightgray);
-  border-radius: 999px;
+  border-radius: $radius-pill;
   color: var(--secondary);
   font-size: 0.85rem;
   font-weight: 600;
+  background: var(--highlight);
+  backdrop-filter: blur(8px);
 }
 
 .home-hero h1 {
@@ -215,29 +278,37 @@ blockquote {
   font-size: clamp(2.4rem, 5vw, 4.8rem);
   line-height: 1.15;
   letter-spacing: -0.04em;
-}
 
-.home-hero h1 span {
-  display: block;
-  margin-top: 0.4rem;
-  color: var(--secondary);
+  span {
+    display: block;
+    margin-top: 0.4rem;
+    color: var(--secondary);
+    background: linear-gradient(
+      135deg,
+      var(--secondary) 0%,
+      var(--tertiary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .home-hero p {
   max-width: 650px;
-  margin: 1.6rem 0 0;
+  margin: $space-4 0 0;
   color: var(--darkgray);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 2;
 }
 
-/* ---------- Buttons ---------- */
 
+// ── 7.2 Buttons ──────────────────────────────────────────────
 .home-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 2rem;
+  gap: $space-2;
+  margin-top: $space-5;
 }
 
 .home-btn {
@@ -245,34 +316,54 @@ blockquote {
   align-items: center;
   justify-content: center;
   min-height: 48px;
-  padding: 0.75rem 1.4rem;
-  border-radius: 12px;
-  text-decoration: none !important;
+  padding: $space-2 $space-4;
+  border-radius: $radius-md;
   font-weight: 700;
+  text-decoration: none;
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-}
+    transform $dur-base $ease,
+    box-shadow $dur-base $ease,
+    background $dur-base $ease,
+    border-color $dur-base $ease;
 
-.home-btn:hover {
-  transform: translateY(-3px);
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-md;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
 }
 
 .home-btn-primary {
   background: var(--secondary);
-  color: white !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  color: white;
+  box-shadow: $shadow-md;
+
+  &:hover {
+    background: var(--tertiary);
+  }
 }
 
 .home-btn-secondary {
   border: 1px solid var(--lightgray);
   background: var(--light);
-  color: var(--dark) !important;
+  color: var(--dark);
+
+  &:hover {
+    border-color: var(--secondary);
+    color: var(--secondary);
+  }
 }
 
-/* ---------- Hero Visual ---------- */
 
+// ── 7.3 Hero Visual ──────────────────────────────────────────
 .home-hero-visual {
   position: relative;
   display: flex;
@@ -285,90 +376,87 @@ blockquote {
   position: relative;
   z-index: 3;
   display: flex;
-  width: min(280px, 70%);
-  min-height: 210px;
-  padding: 2rem;
-  border: 1px solid var(--lightgray);
-  border-radius: 28px;
-  background: var(--light);
-  box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  width: min(280px, 70%);
+  min-height: 210px;
+  padding: $space-5;
+  border: 1px solid var(--lightgray);
+  border-radius: $radius-xl;
+  background: var(--light);
   text-align: center;
+  box-shadow: $shadow-xl;
   transform: rotate(-4deg);
-  transition: transform 0.3s ease;
+  transition: transform $dur-slow $ease-spring, box-shadow $dur-slow $ease;
+
+  &:hover {
+    transform: rotate(0deg) translateY(-8px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+  }
+
+  span {
+    display: block;
+    margin-bottom: $space-2;
+    color: var(--secondary);
+    font-size: 2.5rem;
+  }
+
+  strong {
+    font-size: 1.5rem;
+  }
+
+  small {
+    margin-top: $space-1;
+    color: var(--darkgray);
+  }
 }
 
-.home-visual-card:hover {
-  transform: rotate(0deg) translateY(-8px);
-}
 
-.home-visual-card span {
-  display: block;
-  margin-bottom: 0.8rem;
-  color: var(--secondary);
-  font-size: 2.5rem;
-}
-
-.home-visual-card strong {
-  font-size: 1.5rem;
-}
-
-.home-visual-card small {
-  margin-top: 0.5rem;
-  color: var(--darkgray);
-}
-
-/* ---------- Decorative Orbits ---------- */
-
+// ── 7.4 Decorative Orbits ────────────────────────────────────
 .home-orbit {
   position: absolute;
   border: 1px solid var(--lightgray);
   border-radius: 50%;
-  opacity: 0.65;
-  animation: homeFloat 7s ease-in-out infinite;
+  opacity: 0.55;
+  animation: home-float 7s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.orbit-one {
-  width: 360px;
-  height: 360px;
+.orbit-one   { width: 360px; height: 360px; }
+.orbit-two   { width: 270px; height: 270px; animation-delay: -2s; }
+.orbit-three { width: 450px; height: 450px; animation-delay: -4s; }
+
+@keyframes home-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
 }
 
-.orbit-two {
-  width: 270px;
-  height: 270px;
-  animation-delay: -2s;
-}
-
-.orbit-three {
-  width: 450px;
-  height: 450px;
-  animation-delay: -4s;
-}
-
-@keyframes homeFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-12px);
+// Respect users who prefer reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .home-orbit,
+  .home-visual-card,
+  .home-btn,
+  .home-card {
+    animation: none;
+    transition: none;
   }
 }
 
-/* ---------- Sections ---------- */
 
+// ── 7.5 Sections ─────────────────────────────────────────────
 .home-section {
-  margin-top: 3rem;
-  padding: 3rem 0;
+  margin-top: $space-6;
+  padding: $space-6 0;
 }
 
 .home-section-heading {
-  margin-bottom: 1.5rem;
+  margin-bottom: $space-4;
+
+  h2 {
+    margin: $space-1 0 0;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+  }
 }
 
 .home-section-heading span,
@@ -377,84 +465,138 @@ blockquote {
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-.home-section-heading h2,
 .home-about h2 {
-  margin: 0.5rem 0 0;
+  margin: $space-1 0 0;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
 }
 
-/* ---------- Cards ---------- */
 
+// ── 7.6 Cards ────────────────────────────────────────────────
 .home-cards {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  gap: $space-3;
 }
 
 .home-card {
   display: flex;
-  min-height: 250px;
-  padding: 1.5rem;
-  border: 1px solid var(--lightgray);
-  border-radius: 20px;
-  background: var(--light);
-  text-decoration: none !important;
   flex-direction: column;
+  min-height: 250px;
+  padding: $space-4;
+  border: 1px solid var(--lightgray);
+  border-radius: $radius-lg;
+  background: var(--light);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-}
+    transform $dur-base $ease,
+    box-shadow $dur-base $ease,
+    border-color $dur-base $ease;
 
-.home-card:hover {
-  transform: translateY(-7px);
-  border-color: var(--secondary);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
+  // Subtle gradient accent on hover
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      var(--highlight) 100%
+    );
+    opacity: 0;
+    transition: opacity $dur-base $ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-7px);
+    border-color: var(--secondary);
+    box-shadow: $shadow-lg;
+
+    &::before {
+      opacity: 1;
+    }
+
+    .home-card-icon {
+      transform: scale(1.08) rotate(-4deg);
+    }
+
+    .home-card-link {
+      gap: $space-1;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 1.15rem;
+  }
+
+  p {
+    margin: $space-2 0;
+    color: var(--darkgray);
+    font-size: 0.9rem;
+    line-height: 1.9;
+  }
 }
 
 .home-card-icon {
   display: flex;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 1.3rem;
-  border-radius: 14px;
-  background: var(--highlight);
   align-items: center;
   justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: $space-4;
+  border-radius: 14px;
+  background: var(--highlight);
   font-size: 1.4rem;
-}
-
-.home-card h3 {
-  margin: 0;
-  color: var(--dark);
-  font-size: 1.15rem;
-}
-
-.home-card p {
-  margin: 0.8rem 0;
-  color: var(--darkgray);
-  font-size: 0.9rem;
-  line-height: 1.9;
+  transition: transform $dur-base $ease-spring;
 }
 
 .home-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
   margin-top: auto;
   color: var(--secondary);
   font-size: 0.85rem;
   font-weight: 700;
+  transition: gap $dur-base $ease;
 }
 
-/* ---------- Quote ---------- */
 
+// ── 7.7 Quote ────────────────────────────────────────────────
 .home-quote {
   position: relative;
-  margin: 3rem 0;
-  padding: 3rem;
-  border-radius: 24px;
+  margin: $space-6 0;
+  padding: $space-6;
+  border-radius: $radius-xl;
   background: var(--highlight);
   text-align: center;
+  overflow: hidden;
+
+  // Decorative glow
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(
+      circle at center,
+      var(--secondary) 0%,
+      transparent 60%
+    );
+    opacity: 0.06;
+    pointer-events: none;
+  }
 }
 
 .home-quote-mark {
@@ -462,68 +604,78 @@ blockquote {
   color: var(--secondary);
   font-size: 4rem;
   line-height: 1;
+  opacity: 0.5;
 }
 
 .home-quote p {
   margin: 0;
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   font-weight: 700;
+  line-height: 1.7;
 }
 
-/* ---------- About ---------- */
 
+// ── 7.8 About ────────────────────────────────────────────────
 .home-about {
-  margin: 3rem 0;
-  padding: 3rem;
+  margin: $space-6 0;
+  padding: $space-6;
   border: 1px solid var(--lightgray);
-  border-radius: 24px;
-}
+  border-radius: $radius-xl;
+  background: var(--light);
+  transition: border-color $dur-base $ease;
 
-.home-about p {
-  max-width: 750px;
-  color: var(--darkgray);
-  line-height: 2;
+  &:hover {
+    border-color: var(--secondary);
+  }
+
+  p {
+    max-width: 750px;
+    color: var(--darkgray);
+    line-height: 2;
+  }
 }
 
 .home-text-link {
-  display: inline-block;
-  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  margin-top: $space-1;
   color: var(--secondary);
   font-weight: 700;
   text-decoration: none;
+  transition: gap $dur-base $ease;
+
+  &:hover {
+    gap: $space-2;
+  }
 }
 
 
-/* =========================================
-   TABLET
-   ========================================= */
+// ═══════════════════════════════════════════════════════════════
+//  📐 8. RESPONSIVE — Tablet → Mobile → Small phones
+// ═══════════════════════════════════════════════════════════════
 
-@media all and (max-width: 1100px) {
-
+// ── 8.1 Tablet ───────────────────────────────────────────────
+@media all and (max-width: $bp-tablet) {
   .home-hero {
     grid-template-columns: 1fr 0.75fr;
-    gap: 2rem;
+    gap: $space-5;
   }
 
   .home-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
 }
 
 
-/* =========================================
-   MOBILE / ANDROID
-   ========================================= */
-
-@media all and (max-width: 700px) {
-
+// ── 8.2 Mobile ───────────────────────────────────────────────
+@media all and (max-width: $bp-mobile) {
   .home-hero {
     display: flex;
-    min-height: auto;
-    padding: 2rem 0 3rem;
     flex-direction: column;
-    gap: 2rem;
+    gap: $space-5;
+    min-height: auto;
+    padding: $space-5 0 $space-6;
     text-align: center;
   }
 
@@ -561,27 +713,16 @@ blockquote {
   .home-visual-card {
     width: 220px;
     min-height: 180px;
-    padding: 1.5rem;
+    padding: $space-4;
   }
 
-  .orbit-one {
-    width: 250px;
-    height: 250px;
-  }
-
-  .orbit-two {
-    width: 190px;
-    height: 190px;
-  }
-
-  .orbit-three {
-    width: 310px;
-    height: 310px;
-  }
+  .orbit-one   { width: 250px; height: 250px; }
+  .orbit-two   { width: 190px; height: 190px; }
+  .orbit-three { width: 310px; height: 310px; }
 
   .home-section {
-    margin-top: 1rem;
-    padding: 2rem 0;
+    margin-top: $space-3;
+    padding: $space-5 0;
   }
 
   .home-cards {
@@ -591,34 +732,29 @@ blockquote {
 
   .home-card {
     min-height: auto;
-    padding: 1.3rem;
-  }
+    padding: $space-4;
 
-  .home-card p {
-    margin-bottom: 1rem;
+    p {
+      margin-bottom: $space-3;
+    }
   }
 
   .home-quote {
-    margin: 2rem 0;
-    padding: 2rem 1.3rem;
+    margin: $space-5 0;
+    padding: $space-5 $space-4;
   }
 
   .home-about {
-    margin: 2rem 0;
-    padding: 2rem 1.3rem;
+    margin: $space-5 0;
+    padding: $space-5 $space-4;
   }
-
 }
 
 
-/* =========================================
-   SMALL PHONES
-   ========================================= */
-
-@media all and (max-width: 400px) {
-
+// ── 8.3 Small phones ─────────────────────────────────────────
+@media all and (max-width: $bp-small) {
   .home-hero {
-    padding-top: 1rem;
+    padding-top: $space-3;
   }
 
   .home-hero h1 {
@@ -632,5 +768,4 @@ blockquote {
   .home-visual-card {
     width: 200px;
   }
-
 }
