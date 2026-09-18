@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: plausible
   locale: fa-IR
-  baseUrl: mehdi-rostami82.github.io
+  baseUrl: "mehdi-rostami.ir/qurtz", 
   ignorePatterns:
     - private
     - templates
