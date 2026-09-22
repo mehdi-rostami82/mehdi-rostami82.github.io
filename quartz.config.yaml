@@ -130,7 +130,7 @@ plugins:
   - source: "@quartz-themes/core"
     enabled: true
     options:
-      theme: things
+      theme: coolBlues
       mode: both
   - source: "@quartz-community/remove-draft"
     enabled: true
