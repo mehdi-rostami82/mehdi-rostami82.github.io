@@ -1,9 +1,20 @@
+```scss
 @use "./variables.scss" as *;
+
+
+/* =========================================================
+   MEHDI ROSTAMI — QUARTZ CUSTOM THEME
+   Persian / RTL / Blue / Minimal / Scientific
+   ========================================================= */
+
+
+/* =========================================================
+   FONT
+   ========================================================= */
 
 $vazirmatn: Vazirmatn, sans-serif;
 
 :root {
-  // Things theme reads these overrides after quartz-fonts loads.
   --font-text-override: #{$vazirmatn};
   --font-interface-override: #{$vazirmatn};
   --font-text-theme: #{$vazirmatn};
@@ -32,51 +43,73 @@ body,
   font-family: var(--bodyFont, $vazirmatn) !important;
 }
 
+
+/* =========================================================
+   GLOBAL COLORS
+   ========================================================= */
+
+:root {
+  --my-blue: #2563eb;
+  --my-blue-light: #3b82f6;
+  --my-blue-dark: #1d4ed8;
+
+  --my-bg: #f8fafc;
+  --my-card: #ffffff;
+
+  --my-text: #172033;
+  --my-heading: #0f172a;
+  --my-muted: #64748b;
+
+  --my-border: #e2e8f0;
+  --my-blue-border: #bfdbfe;
+
+  --my-quote-bg: #eff6ff;
+  --my-code-bg: #f1f5f9;
+}
+
+
+/* =========================================================
+   BASIC RTL
+   ========================================================= */
+
 .breadcrumb-element p {
   margin: 0 0.5rem 0 0;
   padding: 0;
   line-height: normal;
 }
 
-button#explorer .fold {
-  opacity: 0.8;
-  margin-left: 0 !important;
-  margin-right: 0.5rem !important;
-  transition: transform 0.3s;
-}
-
 .content-meta[show-comma="true"] > span:not(:last-child) {
   margin-left: 8px !important;
-  margin-right: 0px !important;
+  margin-right: 0 !important;
 }
 
 .tags {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .folder-icon {
-  margin-right: 0px !important;
+  margin-right: 0 !important;
   margin-left: 5px !important;
 }
 
 #explorer-content ul {
   padding-right: 0.7rem !important;
-  padding-left: 0px !important;
+  padding-left: 0 !important;
 }
 
 #toc-content .depth-1 {
-  padding: 0px !important;
+  padding: 0 !important;
   padding-right: 1rem !important;
 }
 
 #toc-content .depth-2 {
-  padding: 0px !important;
+  padding: 0 !important;
   padding-right: 2rem !important;
 }
 
 #toc-content .depth-3 {
-  padding: 0px !important;
+  padding: 0 !important;
   padding-right: 3rem !important;
 }
 
@@ -85,12 +118,17 @@ li:has(> .folder-outer:not(.open)) > .folder-container > svg {
 }
 
 div.search.mobile-only {
-  padding-right: 10px !important;
+  padding-right: 10px;
 }
 
 code {
   direction: ltr !important;
 }
+
+
+/* =========================================================
+   FOOTNOTE
+   ========================================================= */
 
 h2#footnote-label {
   visibility: hidden;
@@ -102,62 +140,597 @@ h2#footnote-label::after {
   display: block;
 }
 
-blockquote {
-  border-right: 3px solid var(--secondary);
-  border-left: none;
-  margin: 1rem 0;
-  padding-right: 1rem;
-  padding-left: none;
-  transition: border-color 0.2s;
+
+/* =========================================================
+   ARTICLE
+   ========================================================= */
+
+.page article {
+  max-width: 780px;
 }
 
-// Quartz Themes expect --callout-title-color; bridge from per-callout accent color.
+.page article p {
+  line-height: 2;
+  margin-top: 1.15rem;
+  margin-bottom: 1.15rem;
+}
+
+.page article li {
+  line-height: 1.9;
+  margin: 0.45rem 0;
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.page article h1,
+.page article h2,
+.page article h3,
+.page article h4,
+.page article h5,
+.page article h6 {
+  color: var(--my-heading);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.page article h1 {
+  font-size: 2.4rem;
+  line-height: 1.4;
+}
+
+.page article h2 {
+  font-size: 1.75rem;
+
+  margin-top: 3rem;
+  margin-bottom: 1.3rem;
+
+  padding-bottom: 0.65rem;
+
+  border-bottom: 1px solid var(--my-border);
+}
+
+.page article h3 {
+  font-size: 1.4rem;
+}
+
+
+/* =========================================================
+   BOLD
+   ========================================================= */
+
+/* LIGHT MODE */
+
+.page article strong,
+.page article b,
+.callout strong,
+.callout b {
+  color: #111827 !important;
+  font-weight: 750;
+}
+
+
+/* DARK MODE */
+
+html[saved-theme="dark"] .page article strong,
+html[saved-theme="dark"] .page article b,
+html[saved-theme="dark"] .callout strong,
+html[saved-theme="dark"] .callout b {
+  color: #f8fafc !important;
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   ITALIC
+   ========================================================= */
+
+/* LIGHT */
+
+.page article em,
+.page article i {
+  color: #2563eb !important;
+}
+
+
+/* DARK */
+
+html[saved-theme="dark"] .page article em,
+html[saved-theme="dark"] .page article i {
+  color: #60a5fa !important;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+.page article a {
+  color: var(--my-blue);
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.page article a:hover {
+  color: var(--my-blue-dark);
+}
+
+
+/* DARK LINKS */
+
+html[saved-theme="dark"] .page article a {
+  color: #60a5fa;
+}
+
+html[saved-theme="dark"] .page article a:hover {
+  color: #93c5fd;
+}
+
+
+/* =========================================================
+   BLOCKQUOTE
+   ========================================================= */
+
+blockquote {
+  border-right: 4px solid var(--my-blue);
+  border-left: none;
+
+  margin: 2rem 0;
+
+  padding: 1.1rem 1.4rem;
+
+  background: var(--my-quote-bg);
+
+  border-radius: 0 12px 12px 0;
+
+  color: #334155;
+
+  box-shadow:
+    0 5px 20px rgba(37, 99, 235, 0.06);
+
+  transition: all 0.2s ease;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+
+/* DARK QUOTE */
+
+html[saved-theme="dark"] blockquote {
+  background: #0f1f3d;
+  border-right-color: #3b82f6;
+  color: #cbd5e1;
+}
+
+
+/* =========================================================
+   CODE
+   ========================================================= */
+
+code {
+  background: var(--my-code-bg);
+
+  color: #1e40af;
+
+  padding: 0.15rem 0.45rem;
+
+  border-radius: 6px;
+
+  font-size: 0.9em;
+}
+
+pre {
+  border: 1px solid var(--my-border);
+
+  border-radius: 14px;
+
+  margin: 2rem 0;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+
+/* DARK CODE */
+
+html[saved-theme="dark"] code {
+  background: #111c30;
+  color: #93c5fd;
+}
+
+html[saved-theme="dark"] pre {
+  border-color: #263449;
+}
+
+
+/* =========================================================
+   CALLOUT
+   ========================================================= */
+
 .callout {
   --callout-title-color: var(--callout-color);
 
-  .callout-title-inner,
-  .callout-title-inner > p {
-    color: var(--callout-title-color, var(--callout-color, var(--text-normal, var(--darkgray))));
-  }
+  border-radius: 14px !important;
 
-  > .callout-content {
-    color: var(--text-normal, var(--darkgray));
+  border: 1px solid var(--my-border) !important;
 
-    p,
-    li,
-    ul,
-    ol,
-    a,
-    span {
-      color: inherit;
-    }
-  }
+  box-shadow:
+    0 6px 22px rgba(15, 23, 42, 0.05);
+
+  margin: 1.5rem 0;
+
+  overflow: hidden;
 }
 
-.page article {
-  li.task-list-item,
-  li:has(> input[type="checkbox"]) {
-    list-style: none;
-    padding-inline-start: calc(var(--checkbox-size, 16px) + 0.75rem);
-    padding-inline-end: 0;
-  }
-
-  input[type="checkbox"] {
-    margin-inline-start: calc(-1 * var(--checkbox-size, 16px) - 0.5rem) !important;
-    margin-inline-end: 0.5rem !important;
-    margin-left: unset !important;
-    margin-right: unset !important;
-    vertical-align: middle;
-  }
+.callout .callout-title {
+  padding: 0.8rem 1rem !important;
 }
 
-// Explorer RTL overrides (mobile)
+.callout .callout-content {
+  padding: 0.2rem 1rem 1rem !important;
+}
+
+.callout .callout-title-inner,
+.callout .callout-title-inner > p {
+  color: var(
+    --callout-title-color,
+    var(--callout-color, var(--text-normal))
+  );
+}
+
+.callout > .callout-content {
+  color: var(--text-normal, var(--darkgray));
+}
+
+.callout > .callout-content p,
+.callout > .callout-content li,
+.callout > .callout-content ul,
+.callout > .callout-content ol,
+.callout > .callout-content span {
+  color: inherit;
+}
+
+
+/* DARK CALLOUT */
+
+html[saved-theme="dark"] .callout {
+  border-color: #263449 !important;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+table {
+  width: 100%;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--my-border);
+
+  border-radius: 12px;
+
+  margin: 2rem 0;
+
+  background: var(--my-card);
+}
+
+th {
+  background: #eff6ff;
+
+  color: #1e3a8a;
+
+  font-weight: 700;
+}
+
+th,
+td {
+  padding: 0.8rem 1rem;
+
+  border-bottom: 1px solid var(--my-border);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+/* DARK TABLE */
+
+html[saved-theme="dark"] table {
+  background: #111827;
+  border-color: #263449;
+}
+
+html[saved-theme="dark"] th {
+  background: #172554;
+  color: #bfdbfe;
+}
+
+html[saved-theme="dark"] th,
+html[saved-theme="dark"] td {
+  border-color: #263449;
+}
+
+html[saved-theme="dark"] tbody tr:hover {
+  background: #172033;
+}
+
+
+/* =========================================================
+   TAGS
+   ========================================================= */
+
+.tags .tag-link {
+  background: #eff6ff;
+
+  color: var(--my-blue);
+
+  border: 1px solid #dbeafe;
+
+  border-radius: 999px;
+
+  padding: 0.25rem 0.7rem;
+
+  transition: all 0.2s ease;
+}
+
+.tags .tag-link:hover {
+  background: var(--my-blue);
+  color: white;
+
+  transform: translateY(-1px);
+}
+
+
+/* DARK TAGS */
+
+html[saved-theme="dark"] .tags .tag-link {
+  background: #172554;
+
+  border-color: #1e3a8a;
+
+  color: #93c5fd;
+}
+
+
+/* =========================================================
+   EXPLORER
+   ========================================================= */
+
+.explorer .nav-file-title,
+.explorer .nav-folder-title {
+  border-radius: 8px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.explorer .nav-file-title:hover,
+.explorer .nav-folder-title:hover {
+  background: #eff6ff;
+
+  color: var(--my-blue);
+}
+
+
+/* DARK EXPLORER */
+
+html[saved-theme="dark"]
+  .explorer
+  .nav-file-title:hover,
+html[saved-theme="dark"]
+  .explorer
+  .nav-folder-title:hover {
+  background: #172554;
+
+  color: #93c5fd;
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search > .search-button {
+  border-radius: 10px !important;
+
+  border: 1px solid var(--my-border);
+
+  background: white;
+
+  transition: all 0.2s ease;
+}
+
+.search > .search-button:hover {
+  border-color: #93c5fd;
+
+  box-shadow:
+    0 4px 15px rgba(37, 99, 235, 0.08);
+}
+
+
+/* DARK SEARCH */
+
+html[saved-theme="dark"] .search > .search-button {
+  background: #111827;
+
+  border-color: #263449;
+}
+
+
+/* =========================================================
+   TABLE OF CONTENTS
+   ========================================================= */
+
+#toc-content {
+  border-right: 2px solid var(--my-border);
+
+  padding-right: 0.8rem;
+}
+
+#toc-content a {
+  color: var(--my-muted);
+
+  transition:
+    color 0.2s ease;
+}
+
+#toc-content a:hover {
+  color: var(--my-blue);
+}
+
+
+/* DARK TOC */
+
+html[saved-theme="dark"] #toc-content a {
+  color: #94a3b8;
+}
+
+html[saved-theme="dark"] #toc-content a:hover {
+  color: #60a5fa;
+}
+
+
+/* =========================================================
+   META
+   ========================================================= */
+
+.content-meta {
+  color: var(--my-muted);
+
+  font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   HORIZONTAL LINE
+   ========================================================= */
+
+hr {
+  border: none;
+
+  height: 1px;
+
+  background: linear-gradient(
+    to left,
+    transparent,
+    var(--my-blue-border),
+    transparent
+  );
+
+  margin: 3rem 0;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: #bfdbfe;
+  color: #172033;
+}
+
+html[saved-theme="dark"] ::selection {
+  background: #1e40af;
+  color: #f8fafc;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #93c5fd;
+}
+
+html[saved-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+html[saved-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media all and ($mobile) {
-  html[dir="rtl"] .page > #quartz-body.lock-scroll > :not(.sidebar.left:has(.explorer)) {
+
+  .page article {
+    padding: 0 0.8rem;
+  }
+
+  .page article h1 {
+    font-size: 1.9rem;
+  }
+
+  .page article h2 {
+    font-size: 1.5rem;
+  }
+
+  blockquote {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+}
+
+
+/* =========================================================
+   EXPLORER RTL — MOBILE
+   ========================================================= */
+
+@media all and ($mobile) {
+
+  html[dir="rtl"]
+    .page
+    > #quartz-body.lock-scroll
+    > :not(.sidebar.left:has(.explorer)) {
     transform: translateX(-100dvw);
   }
 
   html[dir="rtl"] .explorer {
+
     &.collapsed > .explorer-content {
       transform: translateX(100vw);
       visibility: hidden;
@@ -173,20 +746,8 @@ blockquote {
       right: 0;
       transform: translateX(100vw);
     }
-  }
-}
-/* Bold */
-strong,
-b {
-  color: #111827 !important;
-}
 
-/* Dark mode */
-.dark-mode strong,
-.dark-mode b {
-  color: #f1f5f9 !important;
+  }
+
 }
-em,
-i {
-  color: #2563eb !important;
-}
+```
