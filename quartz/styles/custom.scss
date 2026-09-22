@@ -335,3 +335,29 @@ p > b {
 .dark-mode b {
   color: #ffffff !important;
 }
+
+/* =========================================
+   BOLD TEXT — FINAL FIX
+   ========================================= */
+
+/* حالت روشن */
+.page article p > strong,
+.page article p > b {
+  color: #111111 !important;
+}
+
+/* حالت تیره — خود Quartz */
+html[data-theme="dark"] .page article p > strong,
+html[data-theme="dark"] .page article p > b,
+html[data-theme="dark"] .page article strong,
+html[data-theme="dark"] .page article b {
+  color: #ffffff !important;
+}
+
+/* اگر Quartz از saved-theme استفاده کند */
+html[saved-theme="dark"] .page article p > strong,
+html[saved-theme="dark"] .page article p > b,
+html[saved-theme="dark"] .page article strong,
+html[saved-theme="dark"] .page article b {
+  color: #ffffff !important;
+}
