@@ -322,3 +322,16 @@ html[saved-theme="dark"] main b {
   }
 }
 ```
+/* ===== FIX BOLD DARK MODE ===== */
+
+p > strong,
+p > b {
+  color: #111827 !important;
+}
+
+.dark-mode p > strong,
+.dark-mode p > b,
+.dark-mode strong,
+.dark-mode b {
+  color: #ffffff !important;
+}
