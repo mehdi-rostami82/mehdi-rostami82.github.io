@@ -1,656 +1,136 @@
+```scss
 @use "./variables.scss" as *;
 
-/* =========================================================
-   MEHDI ROSTAMI — CLEAN SCIENTIFIC QUARTZ THEME
-   Inspired by the visual language of eledah/quartz_blog
-   but rebuilt cleanly for your Quartz installation.
-
-   IMPORTANT:
-   - Does NOT change .page width
-   - Does NOT change Quartz grid columns
-   - Does NOT change variables.scss
-   ========================================================= */
+$vazirmatn: Vazirmatn, sans-serif;
 
 
 /* =========================================================
-   1. GLOBAL
+   FONT
    ========================================================= */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+:root {
+  --font-text-override: #{$vazirmatn};
+  --font-interface-override: #{$vazirmatn};
+  --font-text-theme: #{$vazirmatn};
+  --font-interface-theme: #{$vazirmatn};
 }
 
 html {
-  font-family: Vazirmatn, sans-serif;
-  overflow-x: clip;
+  font-family: $vazirmatn !important;
 }
 
-body {
-  margin: 0;
-  background: var(--light);
-  color: var(--darkgray);
-  overflow-x: clip;
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
-}
-
-
-/* =========================================================
-   2. MAIN CONTENT — CARD STYLE
-   No width/max-width manipulation here.
-   ========================================================= */
-
-.center {
-  border: 1px solid color-mix(
-    in srgb,
-    var(--gray) 24%,
-    transparent
-  );
-
-  border-radius: 18px;
-
-  background: color-mix(
-    in srgb,
-    var(--light) 94%,
-    white 6%
-  );
-
-  box-shadow:
-    0 8px 28px rgba(0, 0, 0, 0.035);
-
-  padding: 28px;
-
-  transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-
-/* Dark mode card */
-
-[saved-theme="dark"] .center {
-  background: color-mix(
-    in srgb,
-    var(--light) 96%,
-    white 4%
-  );
-
-  border-color: rgba(255, 255, 255, 0.08);
-
-  box-shadow:
-    0 10px 32px rgba(0, 0, 0, 0.28);
+body,
+.callout,
+.callout .callout-title-inner,
+.callout .callout-content,
+.search > .search-button,
+.search > .search-button > p,
+.search .search-bar,
+.search .search-bar::placeholder,
+.explorer,
+.explorer .nav-file-title,
+.explorer .nav-folder-title,
+.explorer .folder-title,
+.explorer .folder-button,
+.explorer .tree-item-self,
+.explorer-content {
+  font-family: var(--bodyFont, $vazirmatn) !important;
 }
 
 
 /* =========================================================
-   3. TYPOGRAPHY
+   BREADCRUMB
    ========================================================= */
 
-p,
-li {
-  line-height: 1.9;
-}
-
-p {
-  margin-top: 0;
-  margin-bottom: 1.15rem;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 700;
-  line-height: 1.45;
-  letter-spacing: -0.015em;
-}
-
-
-/* Main title */
-
-article > h1,
-.article-title {
-  margin-bottom: 1rem;
-  font-size: clamp(2rem, 4vw, 2.65rem);
-  line-height: 1.35;
-}
-
-
-/* Section headings */
-
-article h2 {
-  margin-top: 2.8rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.45rem;
-
-  border-bottom: 1px solid color-mix(
-    in srgb,
-    var(--gray) 28%,
-    transparent
-  );
-}
-
-article h3 {
-  margin-top: 2.2rem;
-}
-
-
-/* =========================================================
-   4. BOLD / ITALIC
-   ========================================================= */
-
-/* Bold */
-
-.page article p > strong,
-.page article p > b,
-.page article li > strong,
-.page article li > b {
-  font-weight: 700;
-  color: var(--dark);
-}
-
-
-/* Italic */
-
-.page article p > em,
-.page article p > i,
-.page article li > em,
-.page article li > i {
-  color: var(--secondary);
-  font-style: italic;
-}
-
-
-/* Dark mode */
-
-[saved-theme="dark"] .page article p > strong,
-[saved-theme="dark"] .page article p > b,
-[saved-theme="dark"] .page article li > strong,
-[saved-theme="dark"] .page article li > b {
-  color: var(--dark);
-}
-
-[saved-theme="dark"] .page article p > em,
-[saved-theme="dark"] .page article p > i,
-[saved-theme="dark"] .page article li > em,
-[saved-theme="dark"] .page article li > i {
-  color: var(--secondary);
-}
-
-
-/* =========================================================
-   5. LINKS
-   ========================================================= */
-
-article a {
-  color: var(--secondary);
-  text-decoration: none;
-  transition:
-    color 0.2s ease,
-    opacity 0.2s ease;
-}
-
-article a:hover {
-  color: var(--tertiary);
-}
-
-
-/* Internal links */
-
-article a.internal {
-  background: transparent;
+.breadcrumb-element p {
+  margin: 0 0.5rem 0 0;
   padding: 0;
-  border-radius: 0;
+  line-height: normal;
 }
 
 
 /* =========================================================
-   6. SCIENTIFIC HIGHLIGHT
+   EXPLORER
    ========================================================= */
 
-.text-highlight {
-  background: transparent;
-  color: inherit;
-
-  padding: 0 0.15rem;
-
-  border-radius: 2px;
-
-  background-image:
-    linear-gradient(
-      to bottom,
-      transparent 58%,
-      color-mix(
-        in srgb,
-        var(--secondary) 28%,
-        transparent
-      ) 58%
-    );
-
-  transition:
-    background-image 0.2s ease;
-}
-
-.text-highlight:hover {
-  background-image:
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      color-mix(
-        in srgb,
-        var(--secondary) 18%,
-        transparent
-      ) 0%
-    );
-}
-
-
-/* =========================================================
-   7. BLOCKQUOTES — RTL SCIENTIFIC STYLE
-   ========================================================= */
-
-blockquote:not(.callout) {
-  direction: rtl;
-  text-align: right;
-
-  margin: 1.8rem auto;
-
-  padding:
-    0.25rem 1.2rem 0.25rem 0;
-
-  border-right:
-    2px solid var(--secondary);
-
-  border-left: none;
-
-  color: var(--darkgray);
-
-  background: transparent;
-
-  font-size: 0.98rem;
-}
-
-
-/* Quote paragraph */
-
-blockquote:not(.callout) p:last-child {
-  margin-bottom: 0;
-}
-
-
-/* Quote links */
-
-blockquote:not(.callout) a {
-  color: var(--secondary);
-}
-
-
-/* Dark */
-
-[saved-theme="dark"] blockquote:not(.callout) {
-  border-right-color: var(--secondary);
-}
-
-
-/* =========================================================
-   8. ENGLISH QUOTES
-   ========================================================= */
-
-.english-blockquote {
-  direction: ltr !important;
-  text-align: left !important;
-
-  padding:
-    0.25rem 0 0.25rem 1.2rem !important;
-
-  border-right: none !important;
-  border-left:
-    2px solid var(--secondary) !important;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-style: italic;
-}
-
-
-/* =========================================================
-   9. SEARCH
-   ========================================================= */
-
-.search {
-  border-radius: 12px;
-}
-
-.search input {
-  border-radius: 12px;
-
-  border: 1px solid color-mix(
-    in srgb,
-    var(--gray) 35%,
-    transparent
-  );
-
-  background: color-mix(
-    in srgb,
-    var(--light) 92%,
-    white 8%
-  );
-
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.search input:focus {
-  border-color: var(--secondary);
-
-  box-shadow:
-    0 0 0 3px color-mix(
-      in srgb,
-      var(--secondary) 12%,
-      transparent
-    );
-}
-
-
-/* Dark */
-
-[saved-theme="dark"] .search input {
-  background:
-    rgba(255, 255, 255, 0.035);
-
-  border-color:
-    rgba(255, 255, 255, 0.1);
-}
-
-
-/* =========================================================
-   10. SIDEBAR
-   ========================================================= */
-
-.sidebar {
-  font-size: 0.95rem;
-}
-
-.sidebar.left {
-  scrollbar-width: thin;
-}
-
-
-/* Desktop separator */
-
-@media all and ($desktop) {
-  .sidebar.left {
-    border-inline-end:
-      1px dashed color-mix(
-        in srgb,
-        var(--gray) 32%,
-        transparent
-      );
-
-    padding-inline-end: 2rem;
-  }
-}
-
-
-/* Dark */
-
-[saved-theme="dark"] .sidebar.left {
-  border-inline-end-color:
-    rgba(255, 255, 255, 0.09);
-}
-
-
-/* =========================================================
-   11. SITE TITLE
-   ========================================================= */
-
-#header-text {
-  color: var(--secondary);
-  font-weight: 700;
-
-  transition: color 0.2s ease;
-}
-
-#header-text:hover {
-  color: var(--tertiary);
-}
-
-.page-title {
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   12. LOGO
-   ========================================================= */
-
-#icon-header {
-  transition:
-    transform 0.25s ease,
-    filter 0.25s ease;
-}
-
-#icon-header:hover {
-  transform: scale(1.04);
-  filter: brightness(1.04);
-}
-
-
-/* =========================================================
-   13. TITLE LOGO
-   ========================================================= */
-
-.title-logo img,
-.title-logo #icon-header {
-  border-radius: 14px;
-}
-
-
-/* =========================================================
-   14. BREADCRUMBS
-   ========================================================= */
-
-.breadcrumb-container {
-  margin-top: 0 !important;
-
-  font-size: 0.9rem;
-
+button#explorer .fold {
   opacity: 0.8;
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+  transition: transform 0.3s;
 }
 
-.breadcrumb-container a {
-  color: var(--gray);
+.folder-icon {
+  margin-right: 0 !important;
+  margin-left: 5px !important;
 }
 
-.breadcrumb-container a:hover {
-  color: var(--secondary);
+#explorer-content ul {
+  padding-right: 0.7rem !important;
+  padding-left: 0 !important;
+}
+
+li:has(> .folder-outer:not(.open)) > .folder-container > svg {
+  transform: rotate(90deg) !important;
 }
 
 
 /* =========================================================
-   15. ARTICLE META
+   CONTENT META
    ========================================================= */
 
-.content-meta {
-  margin-top: 1rem;
-  margin-bottom: 1.8rem;
+.content-meta[show-comma="true"] > span:not(:last-child) {
+  margin-left: 8px !important;
+  margin-right: 0 !important;
+}
 
-  padding-bottom: 1rem;
-
-  border-bottom:
-    1px solid color-mix(
-      in srgb,
-      var(--gray) 25%,
-      transparent
-    );
-
-  font-size: 0.88rem;
-  color: var(--gray);
+.tags {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 
 /* =========================================================
-   16. TABLES
+   TABLE OF CONTENTS
    ========================================================= */
 
-.table-container {
-  overflow-x: auto;
+#toc-content .depth-1 {
+  padding: 0 !important;
+  padding-right: 1rem !important;
 }
 
-.table-container table {
-  width: 100%;
-  border-collapse: collapse;
+#toc-content .depth-2 {
+  padding: 0 !important;
+  padding-right: 2rem !important;
 }
 
-.table-container th {
-  text-align: center !important;
-
-  color: var(--dark);
-
-  background:
-    color-mix(
-      in srgb,
-      var(--secondary) 7%,
-      transparent
-    );
-
-  border-bottom:
-    2px solid var(--secondary);
-}
-
-.table-container td,
-.table-container th {
-  padding: 0.7rem 0.9rem;
-}
-
-.table-container tr {
-  border-bottom:
-    1px solid color-mix(
-      in srgb,
-      var(--gray) 18%,
-      transparent
-    );
+#toc-content .depth-3 {
+  padding: 0 !important;
+  padding-right: 3rem !important;
 }
 
 
 /* =========================================================
-   17. CODE
+   SEARCH
+   ========================================================= */
+
+div.search.mobile-only {
+  padding-right: 10px;
+}
+
+
+/* =========================================================
+   CODE
    ========================================================= */
 
 code {
-  direction: ltr;
-  font-family:
-    "IBM Plex Mono",
-    "Fira Code",
-    monospace;
-}
-
-p code,
-li code {
-  padding: 0.12rem 0.35rem;
-
-  border-radius: 5px;
-
-  background:
-    color-mix(
-      in srgb,
-      var(--secondary) 7%,
-      var(--lightgray)
-    );
-
-  color: var(--dark);
-}
-
-
-/* Code blocks */
-
-pre {
-  border-radius: 12px;
-
-  border:
-    1px solid color-mix(
-      in srgb,
-      var(--gray) 20%,
-      transparent
-    );
-
-  box-shadow:
-    0 6px 22px rgba(0, 0, 0, 0.06);
-}
-
-
-/* Dark */
-
-[saved-theme="dark"] pre {
-  box-shadow:
-    0 8px 28px rgba(0, 0, 0, 0.28);
+  direction: ltr !important;
 }
 
 
 /* =========================================================
-   18. IMAGES
+   FOOTNOTES
    ========================================================= */
-
-article img {
-  border-radius: 10px;
-
-  box-shadow:
-    0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-
-/* =========================================================
-   19. HR
-   ========================================================= */
-
-article hr {
-  width: 100%;
-
-  height: 1px;
-
-  border: none;
-
-  margin: 2.5rem 0;
-
-  background:
-    linear-gradient(
-      to left,
-      transparent,
-      var(--gray),
-      transparent
-    );
-
-  opacity: 0.35;
-}
-
-
-/* =========================================================
-   20. FOOTNOTES
-   ========================================================= */
-
-.footnotes {
-  margin-top: 2.5rem;
-
-  padding-top: 1rem;
-
-  border-top:
-    1px solid color-mix(
-      in srgb,
-      var(--gray) 25%,
-      transparent
-    );
-}
 
 h2#footnote-label {
   visibility: hidden;
@@ -658,197 +138,209 @@ h2#footnote-label {
 
 h2#footnote-label::after {
   content: "پانوشت‌ها";
-
   visibility: visible;
-
   display: block;
 }
 
 
 /* =========================================================
-   21. EXPLORER
+   BLOCKQUOTE
    ========================================================= */
 
-.explorer {
-  border-radius: 10px;
+blockquote {
+  border-right: 3px solid var(--secondary);
+  border-left: none;
 
-  border:
-    1px solid color-mix(
-      in srgb,
-      var(--gray) 22%,
-      transparent
+  margin: 1rem 0;
+
+  padding-right: 1rem;
+  padding-left: 0;
+
+  transition: border-color 0.2s;
+}
+
+
+/* =========================================================
+   CALLOUT
+   ========================================================= */
+
+.callout {
+  --callout-title-color: var(--callout-color);
+
+  .callout-title-inner,
+  .callout-title-inner > p {
+    color: var(
+      --callout-title-color,
+      var(--callout-color, var(--text-normal, var(--darkgray)))
     );
+  }
+
+  > .callout-content {
+    color: var(--text-normal, var(--darkgray));
+
+    p,
+    li,
+    ul,
+    ol,
+    a,
+    span {
+      color: inherit;
+    }
+  }
 }
 
 
 /* =========================================================
-   22. RECENT NOTES
+   CHECKBOX
    ========================================================= */
 
-.recent-notes .recent-ul {
-  list-style: none !important;
-  padding-right: 0 !important;
-}
+.page article {
+  li.task-list-item,
+  li:has(> input[type="checkbox"]) {
+    list-style: none;
 
-.recent-notes .recent-title {
-  color: var(--secondary) !important;
+    padding-inline-start:
+      calc(var(--checkbox-size, 16px) + 0.75rem);
 
-  font-weight: 500;
+    padding-inline-end: 0;
+  }
 
-  background: transparent !important;
-  box-shadow: none !important;
-}
+  input[type="checkbox"] {
+    margin-inline-start:
+      calc(-1 * var(--checkbox-size, 16px) - 0.5rem);
 
-.recent-notes .recent-title:hover {
-  color: var(--tertiary) !important;
+    margin-inline-end: 0.5rem;
+
+    margin-left: unset !important;
+    margin-right: unset !important;
+
+    vertical-align: middle;
+  }
 }
 
 
 /* =========================================================
-   23. CALLOUT SAFE STYLING
-   Only typography/layout.
-   Colors remain controlled by callouts.scss.
+   BOLD — LIGHT MODE
    ========================================================= */
 
-blockquote.callout,
-.markdown-preview-view blockquote.callout {
-  width: auto;
-  max-width: 100%;
-
-  direction: rtl;
-
-  border-radius: 10px;
-
-  box-sizing: border-box;
-}
-
-
-/* Prevent global quote styles from fighting callouts */
-
-blockquote.callout {
-  border-right: none;
+strong,
+b {
+  color: #111827 !important;
+  font-weight: 700;
 }
 
 
 /* =========================================================
-   24. MATHEMATICS
+   ITALIC — LIGHT MODE
    ========================================================= */
 
-.katex,
-.katex-display,
-.mjx-container {
-  direction: ltr;
-}
-
-.katex-display {
-  overflow-x: auto;
+em,
+i {
+  color: #2563eb !important;
 }
 
 
 /* =========================================================
-   25. MERMAID
+   DARK MODE
    ========================================================= */
 
-.mermaid {
-  direction: rtl !important;
-  text-align: center;
+/*
+   Quartz dark mode uses:
+   html[saved-theme="dark"]
+*/
+
+
+/* ---------- Bold in Dark Mode ---------- */
+
+html[saved-theme="dark"] strong,
+html[saved-theme="dark"] b,
+html[saved-theme="dark"] .page article strong,
+html[saved-theme="dark"] .page article b,
+html[saved-theme="dark"] .callout strong,
+html[saved-theme="dark"] .callout b {
+  color: #ffffff !important;
 }
 
-.nodeLabel,
-.edgeLabel {
-  font-family: Vazirmatn, sans-serif;
+
+/* ---------- Italic in Dark Mode ---------- */
+
+html[saved-theme="dark"] em,
+html[saved-theme="dark"] i,
+html[saved-theme="dark"] .page article em,
+html[saved-theme="dark"] .page article i {
+  color: #60a5fa !important;
 }
 
 
 /* =========================================================
-   26. SELECTION
+   DARK MODE — EXTRA SAFETY
    ========================================================= */
 
-::selection {
-  background:
-    color-mix(
-      in srgb,
-      var(--secondary) 28%,
-      transparent
-    );
+/*
+   بعضی عناصر Quartz رنگ متن را از متغیرهای خودش می‌گیرند.
+   این بخش فقط Bold را در حالت Dark مجبور به روشن شدن می‌کند.
+*/
 
-  color: var(--dark);
+html[saved-theme="dark"] article strong,
+html[saved-theme="dark"] article b,
+html[saved-theme="dark"] main strong,
+html[saved-theme="dark"] main b {
+  color: #ffffff !important;
 }
 
 
 /* =========================================================
-   27. SCROLLBAR
-   ========================================================= */
-
-body::-webkit-scrollbar {
-  width: 10px;
-}
-
-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-body::-webkit-scrollbar-thumb {
-  background:
-    color-mix(
-      in srgb,
-      var(--gray) 55%,
-      transparent
-    );
-
-  border-radius: 20px;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary);
-}
-
-
-/* =========================================================
-   28. MOBILE
+   EXPLORER RTL — MOBILE
    ========================================================= */
 
 @media all and ($mobile) {
 
-  .center {
-    padding: 20px;
-    border-radius: 14px;
+  html[dir="rtl"]
+    .page
+    > #quartz-body.lock-scroll
+    > :not(.sidebar.left:has(.explorer)) {
+    transform: translateX(-100dvw);
   }
 
-  article > h1,
-  .article-title {
-    font-size: 1.85rem;
-  }
+  html[dir="rtl"] .explorer {
 
-  article h2 {
-    margin-top: 2.2rem;
-  }
+    &.collapsed > .explorer-content {
+      transform: translateX(100vw);
+      visibility: hidden;
+    }
 
-  blockquote:not(.callout) {
-    padding-right: 1rem;
-  }
+    &:not(.collapsed) > .explorer-content {
+      transform: translateX(0);
+      visibility: visible;
+    }
 
-  .content-meta {
-    font-size: 0.82rem;
+    .explorer-content {
+      left: auto;
+      right: 0;
+      transform: translateX(100vw);
+    }
   }
+}
+```
+/* =========================================
+   FIX: RESTORE QUARTZ CONTENT WIDTH
+   ========================================= */
 
-  .table-container {
-    margin-inline: 0;
-  }
-
+.page {
+  width: 100%;
+  max-width: none;
 }
 
+.page article {
+  width: 100%;
+  max-width: var(--pageWidth);
+  margin-left: auto;
+  margin-right: auto;
+}
 
-/* =========================================================
-   29. ACCESSIBILITY / REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
-    animation: none !important;
-  }
+/* Callouts نباید عرض صفحه را تغییر دهند */
+.callout {
+  width: auto;
+  max-width: 100%;
+  box-sizing: border-box;
 }
