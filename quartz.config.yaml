@@ -130,7 +130,7 @@ plugins:
   - source: "@quartz-themes/core"
     enabled: true
     options:
-      theme: nord
+      theme: things
       mode: both
   - source: "@quartz-community/remove-draft"
     enabled: true
