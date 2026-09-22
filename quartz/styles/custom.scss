@@ -175,9 +175,16 @@ blockquote {
     }
   }
 }
+/* Bold */
 strong,
 b {
-  color: #000000 !important;
+  color: #111827 !important;
+}
+
+/* Dark mode */
+.dark-mode strong,
+.dark-mode b {
+  color: #f1f5f9 !important;
 }
 em,
 i {
