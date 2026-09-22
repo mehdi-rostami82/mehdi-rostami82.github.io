@@ -1,9 +1,12 @@
 @use "sass:map";
 
-/* =========================================================
-   LAYOUT
-   ========================================================= */
-
+/**
+ * Layout breakpoints
+ * $mobile: screen width below this value will use mobile styles
+ * $desktop: screen width above this value will use desktop styles
+ * Screen width between $mobile and $desktop width will use the tablet layout.
+ * assuming mobile < desktop
+ */
 $breakpoints: (
   mobile: 800px,
   desktop: 1200px,
@@ -14,18 +17,11 @@ $tablet: "(min-width: #{map.get($breakpoints, mobile)}) and (max-width: #{map.ge
 $desktop: "(min-width: #{map.get($breakpoints, desktop)})";
 
 $pageWidth: #{map.get($breakpoints, mobile)};
-$sidePanelWidth: 320px;
-
+$sidePanelWidth: 320px; //380px;
 $topSpacing: 6rem;
-
 $boldWeight: 700;
 $semiBoldWeight: 600;
 $normalWeight: 400;
-
-
-/* =========================================================
-   MOBILE GRID
-   ========================================================= */
 
 $mobileGrid: (
   templateRows: "auto auto auto auto auto",
@@ -39,12 +35,6 @@ $mobileGrid: (
       "grid-sidebar-right"\
       "grid-footer"',
 );
-
-
-/* =========================================================
-   TABLET GRID
-   ========================================================= */
-
 $tabletGrid: (
   templateRows: "auto auto auto auto",
   templateColumns: "#{$sidePanelWidth} auto",
@@ -56,12 +46,6 @@ $tabletGrid: (
       "grid-sidebar-left grid-sidebar-right"\
       "grid-sidebar-left grid-footer"',
 );
-
-
-/* =========================================================
-   DESKTOP GRID
-   ========================================================= */
-
 $desktopGrid: (
   templateRows: "auto auto auto",
   templateColumns: "#{$sidePanelWidth} auto #{$sidePanelWidth}",
