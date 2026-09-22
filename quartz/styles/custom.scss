@@ -1,14 +1,9 @@
-```scss
 @use "./variables.scss" as *;
 
 $vazirmatn: Vazirmatn, sans-serif;
 
-
-/* =========================================================
-   FONT
-   ========================================================= */
-
 :root {
+  // Things theme reads these overrides after quartz-fonts loads.
   --font-text-override: #{$vazirmatn};
   --font-interface-override: #{$vazirmatn};
   --font-text-theme: #{$vazirmatn};
@@ -37,21 +32,11 @@ body,
   font-family: var(--bodyFont, $vazirmatn) !important;
 }
 
-
-/* =========================================================
-   BREADCRUMB
-   ========================================================= */
-
 .breadcrumb-element p {
   margin: 0 0.5rem 0 0;
   padding: 0;
   line-height: normal;
 }
-
-
-/* =========================================================
-   EXPLORER
-   ========================================================= */
 
 button#explorer .fold {
   opacity: 0.8;
@@ -60,77 +45,52 @@ button#explorer .fold {
   transition: transform 0.3s;
 }
 
+.content-meta[show-comma="true"] > span:not(:last-child) {
+  margin-left: 8px !important;
+  margin-right: 0px !important;
+}
+
+.tags {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
 .folder-icon {
-  margin-right: 0 !important;
+  margin-right: 0px !important;
   margin-left: 5px !important;
 }
 
 #explorer-content ul {
   padding-right: 0.7rem !important;
-  padding-left: 0 !important;
+  padding-left: 0px !important;
+}
+
+#toc-content .depth-1 {
+  padding: 0px !important;
+  padding-right: 1rem !important;
+}
+
+#toc-content .depth-2 {
+  padding: 0px !important;
+  padding-right: 2rem !important;
+}
+
+#toc-content .depth-3 {
+  padding: 0px !important;
+  padding-right: 3rem !important;
 }
 
 li:has(> .folder-outer:not(.open)) > .folder-container > svg {
   transform: rotate(90deg) !important;
 }
 
-
-/* =========================================================
-   CONTENT META
-   ========================================================= */
-
-.content-meta[show-comma="true"] > span:not(:last-child) {
-  margin-left: 8px !important;
-  margin-right: 0 !important;
-}
-
-.tags {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-
-/* =========================================================
-   TABLE OF CONTENTS
-   ========================================================= */
-
-#toc-content .depth-1 {
-  padding: 0 !important;
-  padding-right: 1rem !important;
-}
-
-#toc-content .depth-2 {
-  padding: 0 !important;
-  padding-right: 2rem !important;
-}
-
-#toc-content .depth-3 {
-  padding: 0 !important;
-  padding-right: 3rem !important;
-}
-
-
-/* =========================================================
-   SEARCH
-   ========================================================= */
-
 div.search.mobile-only {
-  padding-right: 10px;
+  padding-right: 10px !important;
 }
-
-
-/* =========================================================
-   CODE
-   ========================================================= */
 
 code {
   direction: ltr !important;
 }
-
-
-/* =========================================================
-   FOOTNOTES
-   ========================================================= */
 
 h2#footnote-label {
   visibility: hidden;
@@ -142,37 +102,22 @@ h2#footnote-label::after {
   display: block;
 }
 
-
-/* =========================================================
-   BLOCKQUOTE
-   ========================================================= */
-
 blockquote {
   border-right: 3px solid var(--secondary);
   border-left: none;
-
   margin: 1rem 0;
-
   padding-right: 1rem;
-  padding-left: 0;
-
+  padding-left: none;
   transition: border-color 0.2s;
 }
 
-
-/* =========================================================
-   CALLOUT
-   ========================================================= */
-
+// Quartz Themes expect --callout-title-color; bridge from per-callout accent color.
 .callout {
   --callout-title-color: var(--callout-color);
 
   .callout-title-inner,
   .callout-title-inner > p {
-    color: var(
-      --callout-title-color,
-      var(--callout-color, var(--text-normal, var(--darkgray)))
-    );
+    color: var(--callout-title-color, var(--callout-color, var(--text-normal, var(--darkgray))));
   }
 
   > .callout-content {
@@ -189,121 +134,30 @@ blockquote {
   }
 }
 
-
-/* =========================================================
-   CHECKBOX
-   ========================================================= */
-
 .page article {
   li.task-list-item,
   li:has(> input[type="checkbox"]) {
     list-style: none;
-
-    padding-inline-start:
-      calc(var(--checkbox-size, 16px) + 0.75rem);
-
+    padding-inline-start: calc(var(--checkbox-size, 16px) + 0.75rem);
     padding-inline-end: 0;
   }
 
   input[type="checkbox"] {
-    margin-inline-start:
-      calc(-1 * var(--checkbox-size, 16px) - 0.5rem);
-
-    margin-inline-end: 0.5rem;
-
+    margin-inline-start: calc(-1 * var(--checkbox-size, 16px) - 0.5rem) !important;
+    margin-inline-end: 0.5rem !important;
     margin-left: unset !important;
     margin-right: unset !important;
-
     vertical-align: middle;
   }
 }
 
-
-/* =========================================================
-   BOLD — LIGHT MODE
-   ========================================================= */
-
-strong,
-b {
-  color: #111827 !important;
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   ITALIC — LIGHT MODE
-   ========================================================= */
-
-em,
-i {
-  color: #2563eb !important;
-}
-
-
-/* =========================================================
-   DARK MODE
-   ========================================================= */
-
-/*
-   Quartz dark mode uses:
-   html[saved-theme="dark"]
-*/
-
-
-/* ---------- Bold in Dark Mode ---------- */
-
-html[saved-theme="dark"] strong,
-html[saved-theme="dark"] b,
-html[saved-theme="dark"] .page article strong,
-html[saved-theme="dark"] .page article b,
-html[saved-theme="dark"] .callout strong,
-html[saved-theme="dark"] .callout b {
-  color: #ffffff !important;
-}
-
-
-/* ---------- Italic in Dark Mode ---------- */
-
-html[saved-theme="dark"] em,
-html[saved-theme="dark"] i,
-html[saved-theme="dark"] .page article em,
-html[saved-theme="dark"] .page article i {
-  color: #60a5fa !important;
-}
-
-
-/* =========================================================
-   DARK MODE — EXTRA SAFETY
-   ========================================================= */
-
-/*
-   بعضی عناصر Quartz رنگ متن را از متغیرهای خودش می‌گیرند.
-   این بخش فقط Bold را در حالت Dark مجبور به روشن شدن می‌کند.
-*/
-
-html[saved-theme="dark"] article strong,
-html[saved-theme="dark"] article b,
-html[saved-theme="dark"] main strong,
-html[saved-theme="dark"] main b {
-  color: #ffffff !important;
-}
-
-
-/* =========================================================
-   EXPLORER RTL — MOBILE
-   ========================================================= */
-
+// Explorer RTL overrides (mobile)
 @media all and ($mobile) {
-
-  html[dir="rtl"]
-    .page
-    > #quartz-body.lock-scroll
-    > :not(.sidebar.left:has(.explorer)) {
+  html[dir="rtl"] .page > #quartz-body.lock-scroll > :not(.sidebar.left:has(.explorer)) {
     transform: translateX(-100dvw);
   }
 
   html[dir="rtl"] .explorer {
-
     &.collapsed > .explorer-content {
       transform: translateX(100vw);
       visibility: hidden;
@@ -320,27 +174,4 @@ html[saved-theme="dark"] main b {
       transform: translateX(100vw);
     }
   }
-}
-```
-/* =========================================
-   FIX: RESTORE QUARTZ CONTENT WIDTH
-   ========================================= */
-
-.page {
-  width: 100%;
-  max-width: none;
-}
-
-.page article {
-  width: 100%;
-  max-width: var(--pageWidth);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Callouts نباید عرض صفحه را تغییر دهند */
-.callout {
-  width: auto;
-  max-width: 100%;
-  box-sizing: border-box;
 }
